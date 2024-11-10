@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Messages{% endblock %}
+{% block content %}
+<section class="messages-section">
+    <h1 style="font-weight: bold;">Messages from Users</h1>
+    <div class="grid">
+        {% for contact in contacts %}
+        <div class="message-card" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <i class="fa fa-user"></i>
+            <div>
+                <strong>{{ contact.first_name }} {{ contact.last_name }}</strong><br>
+                <small>{{ contact.email }}</small><br>
+                <p>{{ contact.message }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No messages available.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Search Plants{% endblock %}
+{% block content %}
+<section class="search-plants-section">
+    <h1>Search Results</h1>
+    <div class="grid">
+        {% for plant in plants %}
+        <div class="g-col-6 g-col-md-4">
+            <div class="card">
+                <img class="imgSize" src="{{ plant.image.url }}" alt="{{ plant.name }}" />
+                <div class="contener-info">
+                    <h3 class="title">{{ plant.name }}</h3>
+                    <p class="description">{{ plant.about }}</p>
+                    <a href="{% url 'plant_detail' plant.id %}">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No plants found matching your search.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

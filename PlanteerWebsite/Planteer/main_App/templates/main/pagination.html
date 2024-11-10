@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} pagination {% endblock %}
+
+
+{% if posts.count >=20 %}
+
+<div class="border-top pt-3 mt-4 text-center">
+    <a class="btn btn-secondary bg-secondary href='#' ">Next</a>
+    <span class="pr-4 pl-4">from page 1 to 20</span>
+    <a class=" btn btn-secondary bg-secondary href='#' ">Pervious</a>
+</div>
+
+{% endif %}
+
+{% block content %}

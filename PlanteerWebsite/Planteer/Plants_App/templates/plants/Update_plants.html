@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Update Plant{% endblock %}
+{% block content %}
+<section class="update-plant-section">
+    <h1>Update Plant: {{ plant.name }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="name" value="{{ plant.name }}" required>
+        <textarea name="about" required>{{ plant.about }}</textarea>
+        <textarea name="used_for" required>{{ plant.used_for }}</textarea>
+        <input type="file" name="image">
+        <select name="category">
+            <option value="{{ plant.category }}" selected>{{ plant.category }}</option>
+            <option value="Flowers">Flowers</option>
+            <option value="Trees">Trees</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+        </select>
+        <label>
+            <input type="checkbox" name="is_edible" value="1" {% if plant.is_edible %}checked{% endif %}> Is Edible
+        </label>
+        <button type="submit" style="background-color: blue; color: white;">Update Plant</button>
+    </form>
+    <a href="{% url 'all_plants' %}">Back to All Plants</a>
+</section>
+{% endblock %}

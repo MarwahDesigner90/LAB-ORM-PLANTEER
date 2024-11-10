@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}{{ plant.name }} Details{% endblock %}
+{% block content %}
+<section class="plant-detail-section">
+    <h1>{{ plant.name }}</h1>
+    <img src="{{ plant.image.url }}" alt="{{ plant.name }}" />
+    <p><strong>About:</strong> {{ plant.about }}</p>
+    <p><strong>Used For:</strong> {{ plant.used_for }}</p>
+    <p><strong>Category:</strong> {{ plant.category }}</p>
+    <p><strong>Is Edible:</strong> {{ plant.is_edible|yesno:"Yes,No" }}</p>
+    
+    <h2>Related Plants</h2>
+    <div class="related-plants">
+        {% for related in related_plants %}
+        <div class="related-plant">
+            <h3>{{ related.name }}</h3>
+            <p>{{ related.about }}</p>
+            <a href="{% url 'plant_detail' related.id %}">View Details</a>
+        </div>
+        {% empty %}
+        <p>No related plants found.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

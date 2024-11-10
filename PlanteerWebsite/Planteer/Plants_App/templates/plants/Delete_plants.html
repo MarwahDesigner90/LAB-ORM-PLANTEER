@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Delete Plant{% endblock %}
+{% block content %}
+<section class="delete-plant-section">
+    <h1>Delete Plant</h1>
+    <p>Are you sure you want to delete "{{ plant.name }}"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" style="background-color: red; color: white;">Delete</button>
+        <a href="{% url 'all_plants' %}">Cancel</a>
+    </form>
+</section>
+{% endblock %}

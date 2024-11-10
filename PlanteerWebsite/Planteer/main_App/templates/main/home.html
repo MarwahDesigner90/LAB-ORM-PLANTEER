@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero-section">
+    <div class="hero-image">
+        
+        <div class="mid-section text-center">
+            <form role="search" method="get" class="search" novalidate>
+                <div class="input-group">
+                    <input type="text" placeholder="Search For Plant ... " class="search-input" name="Search" value="{{ request.GET.search }}" required minlength="3"/>
+                    <button class="search-button" type="submit">Search</button>
+                </div>
+            </form>
+            <h1 id="plant_title">Planteer</h1>
+            <h1 id="sub_title">Plant Database For Plant Lovers</h1>
+
+        </div>
+    </div>
+</section>
+<section class="plants_types">
+    <div class="text-about">
+        <h1 id="title2_Section_home">Plants</h1>
+        <h3 id="sub_title2">Learn more about plants</h3>
+    </div>
+    <div class="grid">
+        {% for plant in plants %}
+        <div class="g-col-6 g-col-md-4">
+            <div class="card">
+                <img class="imgSize" src="{{ plant.image.url }}" alt="{{ plant.name }}" />
+                <div class="contener-info">
+                    <h3 class="title">{{ plant.name }}</h3>
+                    <p class="description">{{ plant.about }}</p>
+                    <h4 class="typeOfTree">{{ plant.category }}</h4>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No plants available.</p>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if plants.has_previous %}
+            <a href="?page=1" class="btn btn-secondary">&laquo; First</a>
+            <a href="?page={{ plants.previous_page_number }}" class="btn btn-secondary">Previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ plants.number }} of {{ plants.paginator.num_pages }}.
+            </span>
+            {% if plants.has_next %}
+            <a href="?page={{ plants.next_page_number }}" class="btn btn-secondary">Next</a>
+            <a href="?page={{ plants.paginator.num_pages }}" class="btn btn-secondary">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Add New Plant{% endblock %}
+{% block content %}
+<div class="container-plant">
+    <div class="form-container">
+        <section class="plant-section">
+            <h1>Add New Plant</h1>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group mb-4">
+                    <label for="plantName" class="form-label">Plant Name</label>
+                    <input type="text" name="name" id="plantName" placeholder="Plant Name" required class="form-control">
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="about" class="form-label">About the Plant</label>
+                    <textarea name="about" id="about" placeholder="About the Plant" required class="form-control"></textarea>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="usedFor" class="form-label">Used For</label>
+                    <textarea name="used_for" id="usedFor" placeholder="Used For" required class="form-control"></textarea>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="image" class="form-label">Upload Image</label>
+                    <input type="file" name="image" id="image" required class="form-control">
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="category" class="form-label">Category</label>
+                    <select name="category" id="category" class="form-control">
+                        <option value="Flowers">Flowers</option>
+                        <option value="Trees">Trees</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Vegetables">Vegetables</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group mb-4">
+                    <label>
+                        <input type="checkbox" name="is_edible" value="1"> Is Edible
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-submit">Add Plant</button>
+            </form>
+        </section>
+    </div>
+    
+    <div class="image-container">
+        <section class="img-section">
+            <img src="{% static 'images/add_new.jpeg' %}" alt="Add New Plant" />
+        </section>
+    </div>
+</div>
+{% endblock %}
